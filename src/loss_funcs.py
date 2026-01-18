@@ -12,7 +12,7 @@ def weighted_mse_loss(pred, target, l2_diffs):
 # NMSE loss function
 def nmse_loss(pred, target):
     nz = torch.nonzero(target)
-    errs = torch.square(pred[nz] - target[nz])/torch.square(target[nz])
+    errs = torch.square(pred - target)/torch.square(target+ 1e-4)
     return torch.mean(errs)
 
 def nmae_loss(pred, target):
